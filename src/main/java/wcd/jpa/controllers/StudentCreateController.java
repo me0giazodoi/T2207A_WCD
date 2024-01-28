@@ -11,10 +11,8 @@ import org.hibernate.cfg.Configuration;
 import wcd.jpa.entities.Student;
 
 import java.io.IOException;
-import java.util.List;
-
-@WebServlet(value = "/list-student")
-public class StudentController extends HttpServlet {
+@WebServlet("/create-student")
+public class StudentCreateController extends HttpServlet {
     private SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
@@ -25,16 +23,23 @@ public class StudentController extends HttpServlet {
             System.out.println(e.getMessage());
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            List<Student> list = session.createQuery("FROM Student", Student.class)
-                    .getResultList();
-            session.getTransaction().commit();
-            req.setAttribute("students",list);
-        }
-        req.getRequestDispatcher("student/list.jsp").forward(req,resp);
+        req.getRequestDispatcher("student/createStudent.jsp").forward(req,resp);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Student student = new Student();
+        student.setName(req.getParameter("name"));
+        student.setEmail(req.getParameter("email"));
+        student.setAddress(req.getParameter("address"));
+        try(Session session = sessionFactory.openSession()){
+            session.beginTransaction();
+            session.save(student);
+            session.getTransaction().commit();
+        }
+        resp.sendRedirect("list-student");
+    }
 }

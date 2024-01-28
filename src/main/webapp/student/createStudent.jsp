@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <h1>Create Form Student</h1>
-        <form method="post" action="create_student">
+        <form method="post" action="create-student">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" name="name" class="form-control" id="name">
