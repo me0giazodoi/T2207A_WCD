@@ -36,5 +36,25 @@ public class StudentController extends HttpServlet {
         }
         req.getRequestDispatcher("student/list.jsp").forward(req,resp);
     }
-
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req,resp);
+    }
+    // GET và POST cùng một trang (Để sau khi xoá học sinh trong danh sách sẽ load lại trang đó mà không trả về trang 404)
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String entityId = req.getParameter("id");
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Student student = session.get(Student.class, Integer.parseInt(entityId));
+            if (student != null) {
+                session.delete(student);
+            }
+            session.getTransaction().commit();
+            resp.setStatus(404);
+            return;
+        } catch (Exception e) {
+            resp.setStatus(404);
+        }
+    }
 }
