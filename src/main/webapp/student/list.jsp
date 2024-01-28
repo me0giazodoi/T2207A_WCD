@@ -1,4 +1,4 @@
-<%@ page import="com.entities.Student" %>
+<%@ page import="wcd.jpa.entities.Student" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: ADMIN
