@@ -16,6 +16,7 @@
     <jsp:include page="/layout/header.jsp"/>
     <div class="container">
         <h1>List Student</h1>
+        <a href="create-student" class="btn btn-primary">Create</a>
     </div>
     <%--    Table Student--%>
     <div class="container">
@@ -26,6 +27,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -35,6 +37,7 @@
                     <td><%= s.name %></td>
                     <td><%= s.email %></td>
                     <td><%= s.address %></td>
+                    <td><a href="edit-student?id=<%= s.getId() %>" class="btn btn-primary">Edit</a> </td>
                 </tr>
             <%}%>
             </tbody>
