@@ -3,6 +3,7 @@ package com.dao;
 import com.entities.Student;
 
 import java.sql.Array;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,18 @@ public class StudentDAO implements DAOInterface<Student> {
 
     @Override
     public boolean create(Student student) {
+        String sql = "INSERT INTO students (name,email,address) VALUES(?,?,?)";
+        try {
+            Database db = Database.getInstance();
+            PreparedStatement prst = db.getPreparedStatement(sql);
+            prst.setString(1,student.name);
+            prst.setString(2,student.email);
+            prst.setString(3,student.address);
+            prst.execute();
+            return true;
+        }catch (Exception e){
+
+        }
         return false;
     }
 

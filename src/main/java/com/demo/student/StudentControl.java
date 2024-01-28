@@ -26,4 +26,9 @@ public class StudentControl extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("student/list.jsp");
         dispatcher.forward(req,resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req,resp);
+    }
 }

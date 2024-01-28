@@ -14,18 +14,18 @@
 <body>
     <div class="container">
         <h1>Create Form Student</h1>
-        <form>
+        <form method="post" action="create_student">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" name="name" class="form-control" id="name">
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text"  class="form-control" id="email">
+                <input type="text" name="email" class="form-control" id="email">
             </div>
             <div class="mb-3">
                 <label for="address" class="form-label">Address</label>
-                <input type="number"  class="form-control" id="address">
+                <input type="number" name="address" class="form-control" id="address">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

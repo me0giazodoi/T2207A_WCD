@@ -1,5 +1,7 @@
 package com.demo.student;
 
+import com.dao.StudentDAO;
+import com.entities.Student;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,5 +18,20 @@ public class Create_student extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("student/createStudent.jsp");
         dispatcher.forward(req,resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Student s = new Student(0,
+                req.getParameter("name"),
+                req.getParameter("email"),
+                req.getParameter("address")
+                );
+        StudentDAO sd = new StudentDAO();
+        if (sd.create(s)){
+            resp.sendRedirect("student");
+            return;
+        }
+        resp.sendRedirect("create");
     }
 }
