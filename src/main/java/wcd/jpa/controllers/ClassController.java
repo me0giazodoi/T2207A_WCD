@@ -38,4 +38,24 @@ public class ClassController extends HttpServlet {
         req.getRequestDispatcher("class/list.jsp").forward(req,resp);
         return;
     }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        this.doGet(req,resp);
+    }
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String entityId = req.getParameter("id");
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Classes classes = session.get(Classes.class, Integer.parseInt(entityId));
+            if (classes != null) {
+                session.delete(classes);
+            }
+            session.getTransaction().commit();
+            resp.setStatus(404);
+            return;
+        } catch (Exception e) {
+            resp.setStatus(404);
+        }
+    }
 }

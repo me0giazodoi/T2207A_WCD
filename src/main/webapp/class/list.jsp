@@ -41,18 +41,17 @@
             <td><%= s.getSemester() %></td>
             <td><%= s.getStudents().size() %></td>
             <td><a href="edit-student?id=<%= s.getId() %>" class="btn btn-primary">Edit</a> </td>
-            <td><a class="btn btn-danger" onclick="deleteStudent(<%= s.getId()%>)" href="javascript:void(0);">Delete</a></td>
+            <td><a class="btn btn-danger" onclick="deleteClass(<%= s.getId()%>)" href="javascript:void(0);">Delete</a></td>
         </tr>
         <%}%>
         </tbody>
     </table>
 </div>
 <script type="text/javascript">
-    function deleteStudent(id) {
-        var url = `list-student?id=`+id;
+    function deleteClass(id) {
+        var url = `list-class?id=`+id;
         fetch(url,{
             method: 'DELETE'
-            // body: formData
         }).then(rs=>{
             if(confirm("Reload page?"))
                 window.location.reload();
