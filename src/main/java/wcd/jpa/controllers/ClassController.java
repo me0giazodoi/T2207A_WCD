@@ -30,7 +30,7 @@ public class ClassController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
-            List<Classes> ls = session.createQuery("SELECT c FROM Classes c JOIN FETCH c.students", Classes.class)
+            List<Classes> ls = session.createQuery("SELECT DISTINCT c FROM Classes c JOIN FETCH c.students", Classes.class)
                     .getResultList();
             session.getTransaction().commit();
             req.setAttribute("classes",ls);
