@@ -11,7 +11,7 @@ import org.hibernate.cfg.Configuration;
 import wcd.jpa.entities.Student;
 
 import java.io.IOException;
-@WebServlet("/create-student")
+@WebServlet(value = "/create-student")
 public class StudentCreateController extends HttpServlet {
     private SessionFactory sessionFactory;
     @Override
