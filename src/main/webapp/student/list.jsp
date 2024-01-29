@@ -1,5 +1,6 @@
 <%@ page import="wcd.jpa.entities.Student" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="wcd.jpa.entities.Subject" %><%--
   Created by IntelliJ IDEA.
   User: ADMIN
   Date: 22/01/2024
@@ -28,6 +29,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Address</th>
                 <th scope="col">Class</th>
+                <th scope="col">Subject</th>
                 <th scope="col">Action</th>
                 <th scope="col"></th>
             </tr>
@@ -40,6 +42,13 @@
                     <td><%= s.getEmail() %></td>
                     <td><%= s.getAddress() %></td>
                     <td><%= s.getClasses().getName() %></td>
+                    <td>
+                        <ul>
+                            <% for (Subject j: s.getSubjects()){ %>
+                            <li><%= j.getName() %></li>
+                            <% }%>
+                        </ul>
+                    </td>
                     <td><a href="edit-student?id=<%= s.getId() %>" class="btn btn-primary">Edit</a> </td>
                     <td><a class="btn btn-danger" onclick="deleteStudent(<%= s.getId()%>)" href="javascript:void(0);">Delete</a></td>
                 </tr>

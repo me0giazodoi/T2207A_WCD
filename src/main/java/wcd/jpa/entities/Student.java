@@ -1,6 +1,7 @@
 package wcd.jpa.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -20,6 +21,22 @@ public class Student {
     @ManyToOne(fetch = FetchType.LAZY)  //Tang toc do truy van (lay nhung thu mik can)
     @JoinColumn(name = "class_id")
     private Classes classes;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "student_subjects",
+            joinColumns = @JoinColumn(name = "students_id"),
+            inverseJoinColumns = @JoinColumn(name = "subjects_id")
+    )
+    private List<Subject> subjects;
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
     public int getId() {
         return id;
     }
