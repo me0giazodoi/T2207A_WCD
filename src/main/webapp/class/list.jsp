@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Student</title>
+    <title>Class</title>
     <jsp:include page="/layout/css.jsp"/>
 </head>
 <body>
@@ -40,7 +40,7 @@
             <td><%= s.getRoom() %></td>
             <td><%= s.getSemester() %></td>
             <td><%= s.getStudents().size() %></td>
-            <td><a href="edit-student?id=<%= s.getId() %>" class="btn btn-primary">Edit</a> </td>
+            <td><a href="edit-class?id=<%= s.getId() %>" class="btn btn-primary">Edit</a> </td>
             <td><a class="btn btn-danger" onclick="deleteClass(<%= s.getId()%>)" href="javascript:void(0);">Delete</a></td>
         </tr>
         <%}%>
