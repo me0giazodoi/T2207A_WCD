@@ -7,16 +7,19 @@ import javax.persistence.*;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int id;
+    private int id;
 
     @Column(nullable = false)
-    public String name;
+    private String name;
 
     @Column(nullable = false, unique = true)
-    public String email;
+    private String email;
 
-    public String address;
+    private String address;
 
+    @ManyToOne(fetch = FetchType.LAZY)  //Tang toc do truy van (lay nhung thu mik can)
+    @JoinColumn(name = "class_id")
+    private Classes classes;
     public int getId() {
         return id;
     }
@@ -47,5 +50,13 @@ public class Student {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Classes getClasses() {
+        return classes;
+    }
+
+    public void setClasses(Classes classes) {
+        this.classes = classes;
     }
 }
