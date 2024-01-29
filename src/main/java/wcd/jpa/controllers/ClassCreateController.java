@@ -11,11 +11,10 @@ import org.hibernate.cfg.Configuration;
 import wcd.jpa.entities.Classes;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(value = "/list-class")
+@WebServlet(value = "/create-class")
 
-public class ClassController extends HttpServlet {
+public class ClassCreateController extends HttpServlet {
     private SessionFactory sessionFactory;
     @Override
     public void init() throws ServletException {
@@ -28,14 +27,20 @@ public class ClassController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try (Session session = sessionFactory.openSession()) {
+        req.getRequestDispatcher("class/createClass.jsp").forward(req,resp);
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Classes classes = new Classes();
+        classes.setName(req.getParameter("name"));
+        classes.setRoom(req.getParameter("room"));
+        classes.setSemester(req.getParameter("semester"));
+
+        try(Session session = sessionFactory.openSession()){
             session.beginTransaction();
-            List<Classes> ls = session.createQuery("SELECT DISTINCT c FROM Classes c LEFT JOIN FETCH c.students", Classes.class)
-                    .getResultList();
+            session.save(classes);
             session.getTransaction().commit();
-            req.setAttribute("classes",ls);
         }
-        req.getRequestDispatcher("class/list.jsp").forward(req,resp);
-        return;
+        resp.sendRedirect("list-class");
     }
 }

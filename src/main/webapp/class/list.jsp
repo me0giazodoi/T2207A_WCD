@@ -16,7 +16,7 @@
 <jsp:include page="/layout/header.jsp"/>
 <div class="container">
     <h1>List Class</h1>
-    <a href="#" class="btn btn-primary">Create</a>
+    <a href="create-class" class="btn btn-primary">Create</a>
 </div>
 <%--    Table Student--%>
 <div class="container">

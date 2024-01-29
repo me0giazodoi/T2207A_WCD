@@ -12,7 +12,7 @@ public class Classes {
     @Column(unique = true)
     private String name;
     private String room;
-    private int semester;
+    private String semester;
 
     @OneToMany(mappedBy = "classes")
     private List<Student> students;
@@ -41,11 +41,11 @@ public class Classes {
         this.room = room;
     }
 
-    public int getSemester() {
+    public String getSemester() {
         return semester;
     }
 
-    public void setSemester(int semester) {
+    public void setSemester(String semester) {
         this.semester = semester;
     }
 
