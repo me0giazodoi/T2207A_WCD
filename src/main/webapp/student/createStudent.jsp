@@ -33,7 +33,7 @@
             <div class="mb-3">
                 <label for="class" class="form-label">Class</label>
                 <select name="class_id" class="form-control" id="class">
-                    <% for (Classes c: (List<Classes>)request.getAttribute("classesList")){ %>
+                    <% for (Classes c: (List<Classes>)request.getAttribute("classes")){ %>
                     <option value="<%= c.getId()%>"><%= c.getName() %></option>
                     <% } %>
                 </select>
@@ -54,4 +54,3 @@
     </div>
 </body>
 </html>
-// Chuyen mang các giá tri chọn nhieu gia tri

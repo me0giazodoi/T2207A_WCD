@@ -59,6 +59,7 @@ public class StudentCreateController extends HttpServlet {
             // find Classes
             int classID = Integer.parseInt(req.getParameter("class_id"));
             Classes c = session.find(Classes.class,classID);
+            student.setClasses(c);
 
             // find subjects
             List<Integer> s_ids = Arrays.stream(req.getParameterValues("subject_id[]"))
