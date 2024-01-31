@@ -51,6 +51,7 @@
                     </td>
                     <td><a href="edit-student?id=<%= s.getId() %>" class="btn btn-primary">Edit</a> </td>
                     <td><a class="btn btn-danger" onclick="deleteStudent(<%= s.getId()%>)" href="javascript:void(0);">Delete</a></td>
+                    <td><a class="btn btn-success" onclick="likeStudent(<%= s.getId()%>)" href="javascript:void(0);">Like</a></td>
                 </tr>
             <%}%>
             </tbody>
@@ -64,6 +65,18 @@
                 // body: formData
             }).then(rs=>{
                 if(confirm("Reload page?"))
+                    window.location.reload();
+            }).error(err=>{
+                alert(err)
+            })
+        }
+        function likeStudent(id){
+            var url = `list-student?id=`+id;
+            fetch(url,{
+                method: 'POST'
+                // body: formData
+            }).then(rs=>{
+                if(confirm("Like student successfully!"))
                     window.location.reload();
             }).error(err=>{
                 alert(err)
