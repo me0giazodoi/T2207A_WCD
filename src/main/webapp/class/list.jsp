@@ -17,6 +17,8 @@
 <div class="container">
     <h1>List Class</h1>
     <a href="create-class" class="btn btn-primary">Create</a>
+    <a href="list-student" class="btn btn-primary">Student</a>
+    <a href="favourite-student" class="btn btn-primary">Favourite</a>
 </div>
 <%--    Table Student--%>
 <div class="container">
