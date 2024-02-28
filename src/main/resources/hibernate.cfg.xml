@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/t2207a_wcd</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hr_manage</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
         <property name="hibernate.connection.pool_size">1</property>
@@ -17,5 +17,6 @@
         <mapping class="wcd.jpa.entities.Student" />
         <mapping class="wcd.jpa.entities.Classes" />
         <mapping class="wcd.jpa.entities.Subject" />
+        <mapping class="wcd.jpa.entities.Employee" />
     </session-factory>
 </hibernate-configuration>
